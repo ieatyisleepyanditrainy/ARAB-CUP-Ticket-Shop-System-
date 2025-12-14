@@ -52,7 +52,6 @@ body {
 }
 
 .closeBtn {
-    position: static;
     width: auto;
     align-self: flex-start;
     margin-bottom: 20px;
@@ -73,6 +72,7 @@ body {
 
 .closeBtn:hover {
     color: #800020;
+    transform: translateY(-1px);
 }
 
 .logoAndSocials {
@@ -103,6 +103,8 @@ body {
     background-position: center;
 }
 
+/* COLUMNS */
+
 .menuColumn {
     flex-grow: 1;
     flex-basis: 0;
@@ -124,7 +126,8 @@ body {
 }
 
 .homeColumn {
-    background-image: linear-gradient(rgba(128, 0, 32, 0.5), rgba(128, 0, 32, 0.5)),
+    background-image:
+        linear-gradient(rgba(128, 0, 32, 0.5), rgba(128, 0, 32, 0.5)),
         url('https://res.cloudinary.com/drftumteo/image/upload/v1765384648/ccf98bb1bc673439fbfde7b6744f3f76796b6a81_rmtgyn.png');
     background-size: cover;
     background-position: center;
@@ -134,20 +137,28 @@ body {
     position: relative;
 }
 
+/* MAIN MENU LINK (now also for button) */
+
 .menuLink {
     color: #fff;
     text-decoration: none;
     font-size: 30px;
     padding: 10px;
     font-weight: 800;
+    font-family: 'Bebas Neue', sans-serif;
     transition: transform 0.3s ease-out, color 0.3s;
     display: inline-block;
+    border: none;
+    background: none;
+    cursor: pointer;
 }
 
 .menuColumn:hover .menuLink {
     transform: translateY(-15px);
     color: #ffcc00;
 }
+
+/* HOME SUBLINKS (used with buttons now) */
 
 .homeSubLinks {
     color: #fff;
@@ -161,7 +172,6 @@ body {
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.3s ease, visibility 0.3s ease;
-
     position: absolute;
     bottom: 50px;
     left: 50%;
@@ -173,13 +183,40 @@ body {
     visibility: visible;
 }
 
-.homeSubLinks a {
+/* Home sublinks as buttons */
+
+.homeSubLinks button {
     color: #fff;
+    background: none;
+    border: none;
     text-decoration: none;
     display: inline-block;
     transition: color 0.2s;
+    font-size: 12px;
+    text-transform: uppercase;
+    cursor: pointer;
 }
 
-.homeSubLinks a:hover {
+.homeSubLinks button:hover {
     color: #ffcc00;
+}
+
+/* RESPONSIVE (optional) */
+
+@media (max-width: 900px) {
+    .megaMenuContent {
+        flex-direction: column;
+    }
+
+    .closeColumn {
+        width: 100%;
+        flex-direction: row;
+        justify-content: space-between;
+        border-bottom: 2px solid #eee;
+    }
+
+    .menuColumn {
+        border-left: none;
+        border-top: 2px solid #fff;
+    }
 }

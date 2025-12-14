@@ -3,10 +3,12 @@ import React from 'react';
 import './menu.css';
 import { IoIosClose } from 'react-icons/io';
 
-const Menu = ({ isOpen, onClose }) => {
-    if (!isOpen) return null;        // controlled by parent
+const Menu = ({ isOpen, onClose, onNavigate }) => {
+    if (!isOpen) return null; // controlled by parent
 
-    const menuItems = ['HOME', 'MATCHES', 'PROFILE', "FAQ'S", 'TICKETS', 'CALENDAR'];
+    const handleClick = (page) => {
+        if (onNavigate) onNavigate(page);
+    };
 
     return (
         <div className="megaMenuOverlay" onClick={onClose}>
@@ -22,21 +24,70 @@ const Menu = ({ isOpen, onClose }) => {
                     </div>
                 </div>
 
+                {/* HOME column with sub‑links */}
                 <div className="menuColumn homeColumn">
-                    <a href="#" className="menuLink">HOME</a>
+                    <button
+                        className="menuLink"
+                        onClick={() => handleClick('home')}
+                    >
+                        HOME
+                    </button>
                     <div className="homeSubLinks">
-                        <a href="#">MATCH OF THE WEEK</a> <br />
-                        <a href="#">ABOUT US</a> <br />
-                        <a href="#">STADES</a> <br />
-                        <a href="#">OFFRES</a>
+                        <button onClick={() => handleClick('home')}>MATCH OF THE WEEK</button>
+                        <br />
+                        <button onClick={() => handleClick('home')}>ABOUT US</button>
+                        <br />
+                        <button onClick={() => handleClick('calendar')}>STADES</button>
+                        <br />
+                        <button onClick={() => handleClick('matches')}>OFFRES</button>
                     </div>
                 </div>
 
-                {menuItems.slice(1).map((item) => (
-                    <div key={item} className="menuColumn">
-                        <a href="#" className="menuLink">{item}</a>
-                    </div>
-                ))}
+                {/* Other top‑level items */}
+                <div className="menuColumn">
+                    <button
+                        className="menuLink"
+                        onClick={() => handleClick('matches')}
+                    >
+                        MATCHES
+                    </button>
+                </div>
+
+                <div className="menuColumn">
+                    <button
+                        className="menuLink"
+                        onClick={() => handleClick('profile')}
+                    >
+                        PROFILE
+                    </button>
+                </div>
+
+                <div className="menuColumn">
+                    <button
+                        className="menuLink"
+                        onClick={() => handleClick('faq')}
+                    >
+                        FAQ&apos;S
+                    </button>
+                </div>
+
+                <div className="menuColumn">
+                    <button
+                        className="menuLink"
+                        onClick={() => handleClick('my-tickets')}
+                    >
+                        TICKETS
+                    </button>
+                </div>
+
+                <div className="menuColumn">
+                    <button
+                        className="menuLink"
+                        onClick={() => handleClick('calendar')}
+                    >
+                        CALENDAR
+                    </button>
+                </div>
             </div>
         </div>
     );
